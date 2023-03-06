@@ -16,7 +16,7 @@ while true; do
   echo "Trimming airflow logs to ${RETENTION} days."
   find "${DIRECTORY}"/logs \
     -type d -name 'lost+found' -prune -o \
-    -type f -cmin +"${RETENTION}" -name '*.log' -print0 | \
+    -type f -cmin +1 -name '*.log' -print0 | \
     xargs -0 rm -f
 
   seconds=$(( $(date -u +%s) % EVERY))
